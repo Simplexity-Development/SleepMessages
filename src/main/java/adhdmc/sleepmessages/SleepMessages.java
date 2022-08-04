@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SleepMessages extends JavaPlugin {
     public static SleepMessages plugin;
+    public static double version;
 
     @Override
     public void onEnable() {

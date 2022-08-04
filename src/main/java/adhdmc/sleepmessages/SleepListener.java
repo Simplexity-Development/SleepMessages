@@ -18,8 +18,8 @@ public class SleepListener implements Listener {
     @EventHandler
     public void onPlayerSleep(PlayerDeepSleepEvent event) {
         FileConfiguration config = SleepMessages.plugin.getConfig();
-        String sleepMessage = config.getString("player-sleep-message", "");
-        if (sleepMessage.isEmpty()) return;
+        String sleepMessage = config.getString("player-sleep-message");
+        if (sleepMessage == null || sleepMessage.isEmpty()) return;
         World world = event.getPlayer().getWorld();
         String playerName = event.getPlayer().getName();
         String worldName = world.getName();
@@ -42,8 +42,8 @@ public class SleepListener implements Listener {
     public void nightSkip(TimeSkipEvent event) {
         FileConfiguration config = SleepMessages.plugin.getConfig();
         if (!event.getSkipReason().equals(TimeSkipEvent.SkipReason.NIGHT_SKIP)) return;
-        String skipMessage = config.getString("night-skip-message", "");
-        if (skipMessage.isEmpty()) return;
+        String skipMessage = config.getString("night-skip-message");
+        if (skipMessage == null || skipMessage.isEmpty()) return;
         String worldName = event.getWorld().getName();
         event.getWorld().sendMessage(MiniMessage.miniMessage().deserialize(skipMessage, Placeholder.unparsed("worldname", worldName)));
     }
