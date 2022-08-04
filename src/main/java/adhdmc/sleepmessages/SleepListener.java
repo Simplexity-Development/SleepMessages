@@ -26,7 +26,7 @@ public class SleepListener implements Listener {
         int currentSleepCount = 0;
         int worldOnlineTotal = world.getPlayerCount();
         Integer worldSleepPercent = world.getGameRuleValue(GameRule.PLAYERS_SLEEPING_PERCENTAGE);
-        Integer neededSleepers = Math.ceil((worldSleepPercent.floatValue() / 100) * worldOnlineTotal);
+        Integer neededSleepers = (int) Math.ceil((worldSleepPercent / 100.0) * worldOnlineTotal);
         List<Player> playerList = world.getPlayers();
         for (Player player : playerList) {
             if (player.isDeeplySleeping()) currentSleepCount += 1;
