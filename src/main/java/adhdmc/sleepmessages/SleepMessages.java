@@ -9,7 +9,6 @@ public final class SleepMessages extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         this.getConfig().addDefault("player-sleep-message", "<grey><playername> has fallen asleep. <sleeping> out of <needed> required players in <worldname> are sleeping.");
-        this.getConfig().addDefault("player-leave-bed-message", "<grey><playername> has left their bed. There are now <sleeping> out of <needed> players in <worldname> sleeping");
         this.getConfig().addDefault("night-skip-message", "<grey>Enough players have slept! Skipping through the night in <worldname>.");
         this.saveDefaultConfig();
         this.getServer().getPluginManager().registerEvents(new SleepListener(), this);
