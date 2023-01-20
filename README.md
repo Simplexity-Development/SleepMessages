@@ -9,6 +9,12 @@ Configurable chat messages for when someone is sleeping
 
 Adds configurable messages to chat for when a player sleeps to skip night
 
+`/smreload`
+- Reloads the configuration, requires `sm.reload`
+
+`sm.message.bypass`
+- Allows a user to bypass message sending, will not send a message when the player sleeps
+
 > **Note** 
 >
 > This plugin in itself does not add any night-skipping functionality. This plugin is based off what is set with `/gamerule playersSleepingPercentage` 

@@ -1,6 +1,10 @@
-#Use mini-message style color formatting
+#Use mini-message style color formatting, set any message to "" to disable it
 #https://webui.adventure.kyori.net/
+#Should messages only display to the world, or should they display to the entire server?
+world-specific-message: true
+#Purpur-specific feature, if you use Purpur, and afk.count-as-sleeping: true, set this true to fix weirdness with message numbers. This will not set the feature for you in purpur, and if you do not use this feature already, will make the numbers show up incorrectly.
+purpur-afk-count-as-sleeping: false
 #Placeholders: <playername> | <sleeping> | <needed> | <worldname>
 player-sleep-message: "<grey><playername> has fallen asleep. <sleeping> out of <needed> required players in <worldname> are sleeping."
-#Placeholders: <worldname>
 night-skip-message: "<grey>Enough players have slept! Skipping through the night in <worldname>."
+config-reloaded: "<white>[<yellow>SleepMessages</yellow>]</white> <gray>»</gray> <gold>Sleep Message config has been reloaded!</gold>"

@@ -4,9 +4,13 @@ main: adhdmc.sleepmessages.SleepMessages
 api-version: 1.19
 description: Puts a message in chat when someone sleeps
 commands:
-  sleepmessages:
-    description: Command for SleepMessages
-    permission: sleepmessages.commands
+  smreload:
+    description: Command to reload the config for sleep messages
+    permission: sm.reload
 permissions:
-  sleepmessages.commands:
+  sm.reload:
     description: allows user to reload the SleepMessages config file
+    default: op
+  sm.message.bypass:
+    description: allows the user not to send a message when they sleep
+    default: false
