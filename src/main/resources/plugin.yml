@@ -1,6 +1,8 @@
 name: SleepMessages
 version: '${project.version}'
 main: adhdmc.sleepmessages.SleepMessages
+website: https://github.com/ADHDMC/SleepMessages
+author: _Rhythmic
 api-version: 1.19
 description: Puts a message in chat when someone sleeps
 commands:

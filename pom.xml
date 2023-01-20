@@ -6,7 +6,7 @@
 
     <groupId>ADHDMC</groupId>
     <artifactId>SleepMessages</artifactId>
-    <version>0.2</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>SleepMessages</name>
