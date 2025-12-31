@@ -76,10 +76,8 @@ public class SleepListener implements Listener {
 
     private void sendWorldMessage(World world, @Nullable Player player, Integer sleepingPlayers, Integer neededSleepers, String worldName, String message) {
         Component playerName = player == null ? Component.empty() : player.displayName();
-        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            message = PlaceholderAPI.setPlaceholders(player, message);
-        }
         world.sendMessage(miniMessage.deserialize(message,
+                SleepMessages.papi(player),
                 Placeholder.component("playername", playerName),
                 Placeholder.parsed("sleeping", sleepingPlayers.toString()),
                 Placeholder.parsed("needed", neededSleepers.toString()),
@@ -88,10 +86,8 @@ public class SleepListener implements Listener {
 
     private void sendServerMessage(Server server, @Nullable Player player, Integer sleepingPlayers, Integer neededSleepers, String worldName, String message) {
         Component playerName = player == null ? Component.empty() : player.displayName();
-        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            message = PlaceholderAPI.setPlaceholders(player, message);
-        }
         server.sendMessage(miniMessage.deserialize(message,
+                SleepMessages.papi(player),
                 Placeholder.component("playername", playerName),
                 Placeholder.parsed("sleeping", sleepingPlayers.toString()),
                 Placeholder.parsed("needed", neededSleepers.toString()),
