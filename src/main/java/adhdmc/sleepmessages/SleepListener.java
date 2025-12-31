@@ -3,9 +3,11 @@ package adhdmc.sleepmessages;
 import adhdmc.sleepmessages.util.SMMessage;
 import adhdmc.sleepmessages.util.SMPerm;
 import io.papermc.paper.event.player.PlayerDeepSleepEvent;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -17,6 +19,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.event.world.TimeSkipEvent;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -31,7 +34,7 @@ public class SleepListener implements Listener {
         int worldOnlineTotal = world.getPlayerCount();
         Integer worldSleepPercent = world.getGameRuleValue(GameRule.PLAYERS_SLEEPING_PERCENTAGE);
         if (worldSleepPercent == null) return;
-        Component playerName = event.getPlayer().displayName();
+        Player playerSleeping = event.getPlayer();
         String worldName = world.getName();
         int currentSleepCount = 0;
         Integer neededSleepers = (int) Math.ceil((worldSleepPercent / 100.0) * worldOnlineTotal);
@@ -49,9 +52,9 @@ public class SleepListener implements Listener {
             }
         }
         if (worldMessage) {
-            sendWorldMessage(world, playerName, currentSleepCount, neededSleepers, worldName, SMMessage.PLAYER_SLEEPING.getMessage());
+            sendWorldMessage(world, playerSleeping, currentSleepCount, neededSleepers, worldName, SMMessage.PLAYER_SLEEPING.getMessage());
         } else {
-            sendServerMessage(SleepMessages.getInstance().getServer(), playerName, currentSleepCount, neededSleepers, worldName, SMMessage.PLAYER_SLEEPING.getMessage());
+            sendServerMessage(SleepMessages.getInstance().getServer(), playerSleeping, currentSleepCount, neededSleepers, worldName, SMMessage.PLAYER_SLEEPING.getMessage());
         }
     }
 
@@ -64,24 +67,32 @@ public class SleepListener implements Listener {
         World world = event.getWorld();
         String worldName = event.getWorld().getName();
         if (worldMessage) {
-            sendWorldMessage(world, miniMessage.deserialize(""), 0, 0, worldName, SMMessage.NIGHT_SKIP.getMessage());
+            sendWorldMessage(world, null, 0, 0, worldName, SMMessage.NIGHT_SKIP.getMessage());
         } else {
-            sendServerMessage(SleepMessages.getInstance().getServer(), miniMessage.deserialize(""), 0, 0, worldName, SMMessage.NIGHT_SKIP.getMessage());
+            sendServerMessage(SleepMessages.getInstance().getServer(), null, 0, 0, worldName, SMMessage.NIGHT_SKIP.getMessage());
         }
 
     }
 
-    private void sendWorldMessage(World world, Component playername, Integer sleepingPlayers, Integer neededSleepers, String worldName, String message) {
+    private void sendWorldMessage(World world, @Nullable Player player, Integer sleepingPlayers, Integer neededSleepers, String worldName, String message) {
+        Component playerName = player == null ? Component.empty() : player.displayName();
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            message = PlaceholderAPI.setPlaceholders(player, message);
+        }
         world.sendMessage(miniMessage.deserialize(message,
-                Placeholder.component("playername", playername),
+                Placeholder.component("playername", playerName),
                 Placeholder.parsed("sleeping", sleepingPlayers.toString()),
                 Placeholder.parsed("needed", neededSleepers.toString()),
                 Placeholder.parsed("worldname", worldName)));
     }
 
-    private void sendServerMessage(Server server, Component playername, Integer sleepingPlayers, Integer neededSleepers, String worldName, String message) {
+    private void sendServerMessage(Server server, @Nullable Player player, Integer sleepingPlayers, Integer neededSleepers, String worldName, String message) {
+        Component playerName = player == null ? Component.empty() : player.displayName();
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            message = PlaceholderAPI.setPlaceholders(player, message);
+        }
         server.sendMessage(miniMessage.deserialize(message,
-                Placeholder.component("playername", playername),
+                Placeholder.component("playername", playerName),
                 Placeholder.parsed("sleeping", sleepingPlayers.toString()),
                 Placeholder.parsed("needed", neededSleepers.toString()),
                 Placeholder.parsed("worldname", worldName)));
