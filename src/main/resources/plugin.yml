@@ -5,6 +5,8 @@ website: https://github.com/ADHDMC/SleepMessages
 author: _Rhythmic
 api-version: 1.19
 description: Puts a message in chat when someone sleeps
+softdepend:
+  - PlaceholderAPI
 commands:
   smreload:
     description: Command to reload the config for sleep messages

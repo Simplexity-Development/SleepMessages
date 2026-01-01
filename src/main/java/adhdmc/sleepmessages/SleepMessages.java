@@ -2,8 +2,19 @@ package adhdmc.sleepmessages;
 
 import adhdmc.sleepmessages.util.Defaults;
 import adhdmc.sleepmessages.util.SMMessage;
+import me.clip.placeholderapi.PlaceholderAPI;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.Context;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.Tag;
+import net.kyori.adventure.text.minimessage.tag.resolver.ArgumentQueue;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public final class SleepMessages extends JavaPlugin {
     private static SleepMessages instance;
@@ -38,5 +49,17 @@ public final class SleepMessages extends JavaPlugin {
 
     public boolean isPurpurEnabled() {
         return purpurEnabled;
+    }
+
+    public static @NotNull TagResolver papi(@Nullable Player player) {
+        return TagResolver.resolver("papi", (ArgumentQueue args, Context ctx) -> {
+            if (!Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) return null;
+            if (!args.hasNext()) return null;
+            String placeholder = "%" + args.pop().value() + "%";
+            String parsed = PlaceholderAPI.setPlaceholders(player, placeholder);
+            if (parsed.equals(placeholder)) return null;
+            Component component = LegacyComponentSerializer.legacySection().deserialize(parsed);
+            return Tag.selfClosingInserting(component);
+        });
     }
 }
