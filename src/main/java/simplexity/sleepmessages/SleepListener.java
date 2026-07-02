@@ -1,23 +1,18 @@
-package adhdmc.sleepmessages;
+package simplexity.sleepmessages;
 
-import adhdmc.sleepmessages.util.SMMessage;
-import adhdmc.sleepmessages.util.SMPerm;
+import simplexity.sleepmessages.util.SMMessage;
+import simplexity.sleepmessages.util.SMPerm;
 import io.papermc.paper.event.player.PlayerDeepSleepEvent;
-import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Server;
 import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.event.world.TimeSkipEvent;
 import org.jetbrains.annotations.Nullable;
 

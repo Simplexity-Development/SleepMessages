@@ -1,4 +1,4 @@
-package adhdmc.sleepmessages.util;
+package simplexity.sleepmessages.util;
 
 import org.bukkit.permissions.Permission;
 

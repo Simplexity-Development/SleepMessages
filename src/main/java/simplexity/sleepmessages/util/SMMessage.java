@@ -1,6 +1,6 @@
-package adhdmc.sleepmessages.util;
+package simplexity.sleepmessages.util;
 
-import adhdmc.sleepmessages.SleepMessages;
+import simplexity.sleepmessages.SleepMessages;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public enum SMMessage {

@@ -1,7 +1,7 @@
-package adhdmc.sleepmessages;
+package simplexity.sleepmessages;
 
-import adhdmc.sleepmessages.util.Defaults;
-import adhdmc.sleepmessages.util.SMMessage;
+import simplexity.sleepmessages.util.Defaults;
+import simplexity.sleepmessages.util.SMMessage;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.Context;

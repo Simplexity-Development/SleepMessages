@@ -1,15 +1,12 @@
-package adhdmc.sleepmessages;
+package simplexity.sleepmessages;
 
-import adhdmc.sleepmessages.util.SMMessage;
-import adhdmc.sleepmessages.util.SMPerm;
+import simplexity.sleepmessages.util.SMMessage;
+import simplexity.sleepmessages.util.SMPerm;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.util.permissions.PurpurPermissions;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
